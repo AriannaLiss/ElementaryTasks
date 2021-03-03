@@ -1,12 +1,16 @@
 package task1_chessboard;
 
-/** Шахматная доска
- Вывести шахматную доску с заданными размерами высоты и ширины, по принципу:
+/** Task 1 Chess Board
+
+ Print chess board with parameters height and width.
+
+ Example:
  *  *  *  *  *  *
    *  *  *  *  *  *
  *  *  *  *  *  *
    *  *  *  *  *  *
- Программа запускается через вызов главного класса с параметрами.
+
+ For running program you should run main class with parameters.
  */
 
 public class ChessBoard {
