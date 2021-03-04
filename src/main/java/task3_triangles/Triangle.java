@@ -1,26 +1,24 @@
 package task3_triangles;
 
-/** Сортировка треугольников
-    Разработать консольную программу, выполняющую вывод треугольников
-    в порядке убывания их площади.
-    После добавления каждого нового треугольника программа спрашивает,
-    хочет ли пользователь добавить ещё один.
-    Если пользователь ответит “y” или “yes” (без учёта регистра),
-    программа попросит ввести данные для ещё одного треугольника,
-    в противном случае – выводит результат в консоль.
+/** Task 3 Triangles sort
 
-    •Расчёт площади треугольника должны производится по формуле Герона.
-    •Каждый треугольник определяется именем и длинами его сторон.
-    Формат ввода (разделитель - запятая):
-    <имя>, <длина стороны>, <длина стороны>, <длина стороны>
-    •Приложение должно обрабатывать ввод чисел с плавающей точкой.
-    •Ввод должен быть нечувствителен к регистру, пробелам, табам.
-    •Вывод данных должен быть следующем примере:
+    Console program prints triangles in decreasing order of square.
+    Program asks if user wants to add a new triangle after every triangle.
+    If user answers "y" or "yes" (register doesn't matter)
+    program asks for data for new triangle, otherwise print result to console.
+
+    * Calculation of triangle square by Geron's formula.
+    * There are name and side's lenges for every triangle.
+    Example (delimeter is comma):
+    <name>, <side's length>, <side's lenght>, <side's lenght>
+    * Application works on floating point numbers.
+    * Input is insensitive to register, spaces, tabs.
+    * Example of output:
     ============= Triangles list: ===============
     1. [Triangle first]: 17.23 сm
     2. [Triangle 22]: 13 cm
     3. [Triangle 1]: 1.5 cm
-*/
+ */
 
 public class Triangle implements Comparable<Triangle>{
     private String name;
