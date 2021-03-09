@@ -8,7 +8,7 @@ public abstract class Dialog {
     public double getDouble(){
         String data;
         do { data = getData(); } // you can print(ConstGeneral.INPUT_FLOAT)
-        while(!Validator.isDouble(data));
+        while(!NumberValidator.isDouble(data));
         return Double.parseDouble(data);
     }
 
@@ -20,7 +20,7 @@ public abstract class Dialog {
     public int getInt(){
         String data;
         do { data = getData(); }
-        while(!Validator.isInt(data));
+        while(!NumberValidator.isInt(data));
         return Integer.parseInt(data);
     }
 
