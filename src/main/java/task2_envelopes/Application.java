@@ -1,7 +1,6 @@
 package task2_envelopes;
 
 import general.Dialog;
-import general.Validator;
 import general.ConstGeneral;
 
 public class Application implements Runnable {
@@ -33,7 +32,7 @@ public class Application implements Runnable {
             dialog.print(whichEnvelope);
             width = dialog.getDouble(Const.WELCOME_MSG);
             height = dialog.getDouble(Const.WELCOME_MSG);
-            isValid = Validator.isGreaterZero(width) && Validator.isGreaterZero(height);
+            isValid = (width>0) && (height>0);
             if (!isValid) {
                 dialog.print(ConstGeneral.NOT_VALID_DATA);
             }

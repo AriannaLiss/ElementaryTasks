@@ -21,7 +21,8 @@ public class Application implements Runnable {
             if ((args.length == 1) && NumberValidator.isIntInRange(args[0], 1, 9)) {
                 fibonacci.getFibonacciRow(Integer.parseInt(args[0]));
                 dialog.print(fibonacci.toString());
-            } else if ((args.length > 1) && NumberValidator.isPositiveInt(args[0]) && NumberValidator.isPositiveInt(args[1])) {
+            } else if ((args.length > 1) && NumberValidator.isIntInRange(args[0],Const.LOW_BOUND,Const.HIGH_BOUND) &&
+                    NumberValidator.isIntInRange(args[1],Const.LOW_BOUND,Const.HIGH_BOUND)) {
                 fibonacci.getFibonacciRow(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
                 dialog.print(fibonacci.toString());
             } else {
