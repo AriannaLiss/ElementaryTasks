@@ -1,14 +1,14 @@
 package task2_envelopes;
 
-/** Анализ конвертов
- Есть два конверта со сторонами (a,b) и (c,d)
- определить, можно ли один конверт вложить в другой.
- Программа должна обрабатывать ввод чисел с плавающей точкой.
- Программа спрашивает у пользователя размеры конвертов
- по одному параметру за раз.
- После каждого подсчёта программа спрашивает у пользователя хочет ли он продолжить.
- Если пользователь ответит “y” или “yes” (без учёта регистра),
- программа продолжает работу сначала, в противном случае – завершает выполнение.
+/** Task 2 Analysis of envelopes
+
+ There are two envelopes with sides (a,b) and (c,d).
+ To estimate does one envelope fit into another.
+ Program processes float data.
+ Program asks user envelopes sides one by one.
+ After every estimation program asks user whether he wants to continue.
+ If user answers "y" or "yes" (register doesn't matter) program goes on anew.
+ Otherwise program completes.
  */
 
 public class Envelope {
@@ -16,9 +16,6 @@ public class Envelope {
     private final double height;
 
     Envelope(double width, double height) {
-        if ((width <= 0) || (height <= 0)) {
-            throw new IllegalArgumentException("Width and height must be greater then 0.");
-        }
         this.width = width;
         this.height = height;
     }
