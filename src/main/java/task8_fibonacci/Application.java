@@ -1,7 +1,7 @@
 package task8_fibonacci;
 
 import general.Dialog;
-import general.Validator;
+import general.NumberValidator;
 
 public class Application implements Runnable {
     Dialog dialog;
@@ -18,10 +18,10 @@ public class Application implements Runnable {
     public void run(String... args) {
         try {
             Fibonacci fibonacci = new Fibonacci();
-            if ((args.length == 1) && Validator.isIntInRange(args[0], 1, 9)) {
+            if ((args.length == 1) && NumberValidator.isIntInRange(args[0], 1, 9)) {
                 fibonacci.getFibonacciRow(Integer.parseInt(args[0]));
                 dialog.print(fibonacci.toString());
-            } else if ((args.length > 1) && Validator.isPositiveInt(args[0]) && Validator.isPositiveInt(args[1])) {
+            } else if ((args.length > 1) && NumberValidator.isPositiveInt(args[0]) && NumberValidator.isPositiveInt(args[1])) {
                 fibonacci.getFibonacciRow(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
                 dialog.print(fibonacci.toString());
             } else {

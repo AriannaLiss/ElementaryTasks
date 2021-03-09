@@ -1,6 +1,6 @@
 package general;
 
-public class Validator {
+public class NumberValidator {
     //not null
     public static boolean isDouble(String arg){
         return arg.matches("-?\\d+(\\.\\d+)?");
