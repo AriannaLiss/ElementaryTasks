@@ -1,5 +1,7 @@
 package task2_envelopes;
 
+import org.jetbrains.annotations.NotNull;
+
 /** Task 2 Analysis of envelopes
 
  There are two envelopes with sides (a,b) and (c,d).
@@ -11,23 +13,13 @@ package task2_envelopes;
  Otherwise program completes.
  */
 
-public class Envelope {
+public class Envelope implements Comparable<Envelope>{
     private final double width;
     private final double height;
 
     Envelope(double width, double height) {
         this.width = width;
         this.height = height;
-    }
-
-    public int compareTo(Envelope e) {
-        if (((e.width == width) && (e.height == height)) || ((e.height == width) && (e.width == height))) {
-            return 0; //Envelopes are equal
-        }
-        if (fitStraight(e) || fitDiagonal(e)) {
-            return 1; //Envelope [e] goes into this envelope
-        }
-        return -1; //Envelope [e] doesn't go into this envelope
     }
 
     //Return true if Envelope [e] goes straight into this envelope
@@ -46,5 +38,16 @@ public class Envelope {
         if ((h2 <= 0) && (w2 <= 0)) return false;
         double z = Math.sqrt(Math.pow(h2, 2) + Math.pow(w2, 2));
         return ((z > e.width) || (z > e.height));
+    }
+
+    @Override
+    public int compareTo(@NotNull Envelope e) {
+        if (((e.width == width) && (e.height == height)) || ((e.height == width) && (e.width == height))) {
+            return 0; //Envelopes are equal
+        }
+        if (fitStraight(e) || fitDiagonal(e)) {
+            return 1; //Envelope [e] goes into this envelope
+        }
+        return -1; //Envelope [e] doesn't go into this envelope
     }
 }
