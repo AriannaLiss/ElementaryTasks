@@ -1,9 +1,6 @@
 package general;
 
-import task2_envelopes.Const;
-
 public abstract class Dialog {
-    public abstract String getData();
     public abstract String getLine();
     public abstract void print(String msg);
 
