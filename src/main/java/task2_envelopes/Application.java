@@ -26,29 +26,13 @@ public class Application {
 
     private Envelope inputEnvelope(String whichEnvelope) {
         double width, height;
-        boolean isValid;
-        do {
-            dialog.print(whichEnvelope);
-            width = dialog.getDouble(Const.WELCOME_MSG);
-            height = dialog.getDouble(Const.WELCOME_MSG);
-            isValid = (width>0) && (height>0);
-            if (!isValid) {
-                dialog.print(ConstGeneral.NOT_VALID_DATA);
-            }
-        }
-        while (!isValid);
+        dialog.print(whichEnvelope);
+        width = dialog.getNotZeroPositiveDouble(Const.WELCOME_MSG);
+        height = dialog.getNotZeroPositiveDouble(Const.WELCOME_MSG);
         return new Envelope(width, height);
     }
 
     private String compareEnvelopes(Envelope env1, Envelope env2) {
-/*        int comparing = env1.fit(env2);
-        if (comparing == 0) {
-            return Const.ENVELOPES_EQUAL;
-        } else if (comparing > 0) {
-            return Const.FIRST_GREATER;
-        } else if (env2.fit(env1) > 0) {
-            return Const.SECOND_GREATER;
-        }*/
         if (env1.isPossiblePut(env2)){
             return Const.FIRST_GREATER;
         } else if (env2.isPossiblePut(env1)){

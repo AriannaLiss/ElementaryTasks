@@ -1,5 +1,7 @@
 package general;
 
+import task2_envelopes.Const;
+
 public abstract class Dialog {
     public abstract String getData();
     public abstract String getLine();
@@ -9,15 +11,33 @@ public abstract class Dialog {
         return getDouble(ConstGeneral.PLEASE_INPUT_FLOAT);
     }
 
-    public double getDouble(String msg){//, Class type//Integer.Class){
+    public double getDouble(String msg){
         String data;
-        boolean valid=false;
         do {
             print(msg);
             data = getLine();
+            if (!NumberValidator.isDouble(data)){
+                print(ConstGeneral.NOT_VALID_DATA);
+            }
+            else{
+                return Double.parseDouble(data);
+            }
         }
-        while(!NumberValidator.isDouble(data));
-        return Double.parseDouble(data);
+        while(true);
+    }
+
+    public double getNotZeroPositiveDouble(String msg){
+        double number;
+        do{
+            number = getDouble(msg);
+            if (number<=0) {
+                print(ConstGeneral.NOT_VALID_DATA);
+            }
+            else {
+                return number;
+            }
+        }
+        while(true);
     }
 
     public int getInt(){
@@ -26,13 +46,17 @@ public abstract class Dialog {
 
     public int getInt(String msg){
         String data;
-        boolean valid=false;
         do {
             print(msg);
             data = getLine();
+            if (!NumberValidator.isInt(data)){
+                print(ConstGeneral.NOT_VALID_DATA);
+            }
+            else{
+                return Integer.parseInt(data);
+            }
         }
-        while(!NumberValidator.isInt(data));
-        return Integer.parseInt(data);
+        while(true);
     }
 
     public boolean yesNo(){
@@ -42,8 +66,7 @@ public abstract class Dialog {
     public boolean yesNo(String msg) {
         String answer;
         print(msg);
-        answer = getData();
-        //regular? \\s*y\\s* ignore case and yes
+        answer = getLine();
         return ((answer.equalsIgnoreCase("y")) || (answer.equalsIgnoreCase("yes")));
     }
 }
