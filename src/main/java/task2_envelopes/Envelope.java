@@ -22,35 +22,20 @@ public class Envelope {
 
     /** Check is it possible to put envelope e in this envelop
      *
-     * @param e
+     * @param e is Envelope which we try to put into this envelope
      * @return true if envelope e fits into this envelop, false otherwise
      */
     public boolean isPossiblePut(Envelope e) {
-        if ((e!=null) && (fitStraight(e) || fitDiagonal(e))) {
-            return true; //Envelope [e] goes into this envelope
-        }
-        return false; //Envelope [e] doesn't go into this envelope (they could be equal)
-    }
-
-    public int fit(Envelope e) {
-        if (e!=null) {
-            if (((e.width == width) && (e.height == height)) || ((e.height == width) && (e.width == height))) {
-                return 0; //Envelopes are equal
-            }
-            if (fitStraight(e) || fitDiagonal(e)) {
-                return 1; //Envelope [e] goes into this envelope
-            }
-        }
-        return -1; //Envelope [e] doesn't go into this envelope
+        return (e != null) && (isFitStraight(e) || isFitDiagonal(e));
     }
 
     //Return true if Envelope [e] goes straight into this envelope
-    private boolean fitStraight(Envelope e) {
+    private boolean isFitStraight(Envelope e) {
         return ((e.width < width) && (e.height < height)) || ((e.height < width) && (e.width < height));
     }
 
     //Return true if Envelope [e] goes into this envelope on the diagonal
-    private boolean fitDiagonal(Envelope e) {
+    private boolean isFitDiagonal(Envelope e) {
         double diagonal = Math.sqrt(Math.pow(e.width, 2) + Math.pow(e.height, 2));
         double h12 = Math.pow(diagonal, 2) - Math.pow(width, 2);
         double w12 = Math.pow(diagonal, 2) - Math.pow(height, 2);
