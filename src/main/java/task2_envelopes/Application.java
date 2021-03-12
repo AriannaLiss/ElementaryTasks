@@ -3,14 +3,13 @@ package task2_envelopes;
 import general.Dialog;
 import general.ConstGeneral;
 
-public class Application implements Runnable {
-    Dialog dialog;
+public class Application {
+    private Dialog dialog;
 
     Application(Dialog dialog) {
         this.dialog = dialog;
     }
 
-    @Override
     public void run() {
         Envelope env1, env2;
         try {
@@ -19,7 +18,7 @@ public class Application implements Runnable {
                 env2 = inputEnvelope(Const.SECOND_ENVELOPE);
                 dialog.print(compareEnvelopes(env1, env2));
             }
-            while (dialog.yesNo(ConstGeneral.YES_NO));
+            while (dialog.yesNo());
         } catch (Exception e) {
             dialog.print(e.getMessage());
         }
@@ -27,27 +26,16 @@ public class Application implements Runnable {
 
     private Envelope inputEnvelope(String whichEnvelope) {
         double width, height;
-        boolean isValid;
-        do {
-            dialog.print(whichEnvelope);
-            width = dialog.getDouble(Const.WELCOME_MSG);
-            height = dialog.getDouble(Const.WELCOME_MSG);
-            isValid = (width>0) && (height>0);
-            if (!isValid) {
-                dialog.print(ConstGeneral.NOT_VALID_DATA);
-            }
-        }
-        while (!isValid);
+        dialog.print(whichEnvelope);
+        width = dialog.getNotZeroPositiveDouble(Const.WELCOME_MSG);
+        height = dialog.getNotZeroPositiveDouble(Const.WELCOME_MSG);
         return new Envelope(width, height);
     }
 
     private String compareEnvelopes(Envelope env1, Envelope env2) {
-        int comparing = env1.compareTo(env2);
-        if (comparing == 0) {
-            return Const.ENVELOPES_EQUAL;
-        } else if (comparing > 0) {
+        if (env1.isPossiblePut(env2)){
             return Const.FIRST_GREATER;
-        } else if (env2.compareTo(env1) > 0) {
+        } else if (env2.isPossiblePut(env1)){
             return Const.SECOND_GREATER;
         }
         return Const.DONT_FIT;

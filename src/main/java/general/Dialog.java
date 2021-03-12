@@ -1,38 +1,72 @@
 package general;
 
+import task2_envelopes.Const;
+
 public abstract class Dialog {
     public abstract String getData();
     public abstract String getLine();
     public abstract void print(String msg);
 
     public double getDouble(){
-        String data;
-        do { data = getData(); } // you can print(ConstGeneral.INPUT_FLOAT)
-        while(!NumberValidator.isDouble(data));
-        return Double.parseDouble(data);
+        return getDouble(ConstGeneral.PLEASE_INPUT_FLOAT);
     }
 
     public double getDouble(String msg){
-        print(msg);
-        return getDouble();
+        String data;
+        do {
+            print(msg);
+            data = getLine();
+            if (!NumberValidator.isDouble(data)){
+                print(ConstGeneral.NOT_VALID_DATA);
+            }
+            else{
+                return Double.parseDouble(data);
+            }
+        }
+        while(true);
+    }
+
+    public double getNotZeroPositiveDouble(String msg){
+        double number;
+        do{
+            number = getDouble(msg);
+            if (number<=0) {
+                print(ConstGeneral.NOT_VALID_DATA);
+            }
+            else {
+                return number;
+            }
+        }
+        while(true);
     }
 
     public int getInt(){
-        String data;
-        do { data = getData(); }
-        while(!NumberValidator.isInt(data));
-        return Integer.parseInt(data);
+        return getInt(ConstGeneral.PLEASE_INPUT_INT);
     }
 
     public int getInt(String msg){
-        print(msg);
-        return getInt();
+        String data;
+        do {
+            print(msg);
+            data = getLine();
+            if (!NumberValidator.isInt(data)){
+                print(ConstGeneral.NOT_VALID_DATA);
+            }
+            else{
+                return Integer.parseInt(data);
+            }
+        }
+        while(true);
+    }
+
+    public boolean yesNo(){
+        return yesNo(ConstGeneral.YES_NO);
     }
 
     public boolean yesNo(String msg) {
         String answer;
         print(msg);
-        answer = getData();
+        answer = getLine();
         return ((answer.equalsIgnoreCase("y")) || (answer.equalsIgnoreCase("yes")));
     }
 }

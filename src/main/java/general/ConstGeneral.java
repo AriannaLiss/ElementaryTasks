@@ -1,7 +1,8 @@
 package general;
 
 public interface ConstGeneral {
-    String INPUT_FLOAT = "You should input float pointing number.\n";
-    String NOT_VALID_DATA = "You input not valid data.\n";
+    String PLEASE_INPUT_FLOAT = "Please, input float pointing number: ";
+    String PLEASE_INPUT_INT = "Please, input integer: ";
+    String NOT_VALID_DATA = "You've input not valid data.\n";
     String YES_NO = "Do you want to continue? (y/yes for continue) ";
 }

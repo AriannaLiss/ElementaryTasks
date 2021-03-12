@@ -12,7 +12,7 @@ public class ConsoleDialog extends Dialog {
 
     @Override
     public String getLine() {
-        return in.nextLine();
+        return in.nextLine().trim();
     }
 
     @Override

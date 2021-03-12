@@ -20,19 +20,33 @@ public class Envelope {
         this.height = height;
     }
 
-    public int compareTo(Envelope e) {
-        if (((e.width == width) && (e.height == height)) || ((e.height == width) && (e.width == height))) {
-            return 0; //Envelopes are equal
+    /** Check is it possible to put envelope e in this envelop
+     *
+     * @param e
+     * @return true if envelope e fits into this envelop, false otherwise
+     */
+    public boolean isPossiblePut(Envelope e) {
+        if ((e!=null) && (fitStraight(e) || fitDiagonal(e))) {
+            return true; //Envelope [e] goes into this envelope
         }
-        if (fitStraight(e) || fitDiagonal(e)) {
-            return 1; //Envelope [e] goes into this envelope
+        return false; //Envelope [e] doesn't go into this envelope (they could be equal)
+    }
+
+    public int fit(Envelope e) {
+        if (e!=null) {
+            if (((e.width == width) && (e.height == height)) || ((e.height == width) && (e.width == height))) {
+                return 0; //Envelopes are equal
+            }
+            if (fitStraight(e) || fitDiagonal(e)) {
+                return 1; //Envelope [e] goes into this envelope
+            }
         }
         return -1; //Envelope [e] doesn't go into this envelope
     }
 
     //Return true if Envelope [e] goes straight into this envelope
     private boolean fitStraight(Envelope e) {
-        return ((e.width < width) && (e.height < height)) || ((e.height < width) && (e.width < height)) || fitDiagonal(e);
+        return ((e.width < width) && (e.height < height)) || ((e.height < width) && (e.width < height));
     }
 
     //Return true if Envelope [e] goes into this envelope on the diagonal
