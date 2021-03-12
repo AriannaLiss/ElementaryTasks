@@ -1,7 +1,5 @@
 package task2_envelopes;
 
-import org.jetbrains.annotations.NotNull;
-
 /** Task 2 Analysis of envelopes
 
  There are two envelopes with sides (a,b) and (c,d).
@@ -13,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
  Otherwise program completes.
  */
 
-public class Envelope implements Comparable<Envelope>{
+public class Envelope {
     private final double width;
     private final double height;
 
@@ -22,9 +20,33 @@ public class Envelope implements Comparable<Envelope>{
         this.height = height;
     }
 
+    /** Check is it possible to put envelope e in this envelop
+     *
+     * @param e
+     * @return true if envelope e fits into this envelop, false otherwise
+     */
+    public boolean isPossiblePut(Envelope e) {
+        if ((e!=null) && (fitStraight(e) || fitDiagonal(e))) {
+            return true; //Envelope [e] goes into this envelope
+        }
+        return false; //Envelope [e] doesn't go into this envelope (they could be equal)
+    }
+
+    public int fit(Envelope e) {
+        if (e!=null) {
+            if (((e.width == width) && (e.height == height)) || ((e.height == width) && (e.width == height))) {
+                return 0; //Envelopes are equal
+            }
+            if (fitStraight(e) || fitDiagonal(e)) {
+                return 1; //Envelope [e] goes into this envelope
+            }
+        }
+        return -1; //Envelope [e] doesn't go into this envelope
+    }
+
     //Return true if Envelope [e] goes straight into this envelope
     private boolean fitStraight(Envelope e) {
-        return ((e.width < width) && (e.height < height)) || ((e.height < width) && (e.width < height)) || fitDiagonal(e);
+        return ((e.width < width) && (e.height < height)) || ((e.height < width) && (e.width < height));
     }
 
     //Return true if Envelope [e] goes into this envelope on the diagonal
@@ -38,16 +60,5 @@ public class Envelope implements Comparable<Envelope>{
         if ((h2 <= 0) && (w2 <= 0)) return false;
         double z = Math.sqrt(Math.pow(h2, 2) + Math.pow(w2, 2));
         return ((z > e.width) || (z > e.height));
-    }
-
-    @Override
-    public int compareTo(@NotNull Envelope e) {
-        if (((e.width == width) && (e.height == height)) || ((e.height == width) && (e.width == height))) {
-            return 0; //Envelopes are equal
-        }
-        if (fitStraight(e) || fitDiagonal(e)) {
-            return 1; //Envelope [e] goes into this envelope
-        }
-        return -1; //Envelope [e] doesn't go into this envelope
     }
 }
