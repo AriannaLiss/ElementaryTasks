@@ -1,26 +1,24 @@
 package general;
 
-public class NumberValidator {
-    //not null
-    public static boolean isDouble(String arg){
-        return arg.matches("\\s*-?\\d+(\\.\\d+)?\\s*");
-    }
-
-    //not null
-    public static boolean isInt(String arg){
-        return arg.matches("\\s*-?\\d+\\s*");
-    }
+public abstract class NumberValidator {
+    public abstract boolean isNumber(String arg);
+    public abstract Number parseNumber(String arg);
 
     //could be equal zero
-    public static boolean isPositiveInt(String arg){
-        return arg.matches("\\s*\\d+\\s*");
+    public boolean isNotNullPositiveNumber(String arg){
+        if(isNumber(arg)){
+            if (parseNumber(arg)>0){
+                return true;
+            }
+        }
+        return false;
     }
 
-    //return true if param is integer and fits to range [from..to]
-    public static boolean isIntInRange(String param, int from, int to){
-        if(isInt(param))
+    //return true if arg is valid and fits to range [from..to]
+    public boolean isNumberInRange(String arg, Double from, Double to){
+        if(isNumber(arg))
         {
-            int value = Integer.parseInt(param);
+            Number value = parseNumber(arg);
             return (value >= from)&&(value <= to);
         }
         return false;
