@@ -1,13 +1,15 @@
 package task2_envelopes;
 
 import general.Dialog;
-import general.ConstGeneral;
+import general.DoubleValidator;
 
 public class Application {
     private Dialog dialog;
+    private DoubleValidator validator;
 
     Application(Dialog dialog) {
         this.dialog = dialog;
+        this.validator = new DoubleValidator(dialog);
     }
 
     public void run() {
@@ -18,7 +20,7 @@ public class Application {
                 env2 = inputEnvelope(Const.SECOND_ENVELOPE);
                 dialog.print(compareEnvelopes(env1, env2));
             }
-            while (dialog.yesNo());
+            while (validator.yesNo());
         } catch (Exception e) {
             dialog.print(e.getMessage());
         }
@@ -27,8 +29,8 @@ public class Application {
     private Envelope inputEnvelope(String whichEnvelope) {
         double width, height;
         dialog.print(whichEnvelope);
-        width = dialog.getNotZeroPositiveDouble(Const.WELCOME_MSG);
-        height = dialog.getNotZeroPositiveDouble(Const.WELCOME_MSG);
+        width = validator.getNotZeroPositiveNumber(Const.WELCOME_MSG);
+        height = validator.getNotZeroPositiveNumber(Const.WELCOME_MSG);
         return new Envelope(width, height);
     }
 
