@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fibonacci {
-    private List<Integer> fibonacciRow;
+    private List<Integer> fibonacciRow = new ArrayList<>();
 
     Fibonacci(){
-        fibonacciRow = new ArrayList<Integer>();
         init(0,1);
     }
 
@@ -90,12 +89,14 @@ public class Fibonacci {
     }
 
     //Requirements: (countOfDigits>0)&&(countOfDigits<10)
-    //if countOfDigits == 1 row will start from 1
-    //example: [1, 1, 2, 3, 5, 8]
     //return fibonacci row with numbers witch have countOfDigits digits
     public List<Integer> getFibonacciRow(int countOfDigits){
-        int from = (int)Math.pow(10,countOfDigits - 1);
-        return getFibonacciRow(from, from*10-1);
+        int from=0,to=9;
+        if(countOfDigits>1){
+            from = (int)Math.pow(10,countOfDigits - 1);
+            to = from*10-1;
+        }
+        return getFibonacciRow(from, to);
     }
 
     @Override
