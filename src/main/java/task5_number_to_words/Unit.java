@@ -1,8 +1,8 @@
 package task5_number_to_words;
 
 public class Unit {
-    public static String toString(int number){
-        int unit = number % 10;
+    public static String toString(long number){
+        int unit = (int)(number % 10);
         String word="";
         switch(unit) {
             case 0:
