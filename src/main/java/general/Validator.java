@@ -3,6 +3,7 @@ package general;
 public abstract class Validator {
     private Dialog dialog;
     public abstract boolean isNumber(String arg);
+    public abstract boolean isPositiveNumber(String arg);
     protected abstract Number parseNumber(String arg);
 
     Validator(Dialog dialog){
