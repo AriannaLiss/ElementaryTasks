@@ -1,6 +1,7 @@
 package task5_number_to_words;
 
 import general.ConsoleDialog;
+import general.Dialog;
 
 /**
  * Number in words
@@ -13,6 +14,8 @@ import general.ConsoleDialog;
 
 public class Main {
     public static void main(String[] args) {
-        new Application(new ConsoleDialog()).run(args);
+        Dialog dialog = new ConsoleDialog();
+        new Application(dialog).run(args);
+        new Test(dialog).run();
     }
 }

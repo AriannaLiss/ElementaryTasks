@@ -1,4 +1,4 @@
-package task5_number_to_words;
+package task5_number_to_words.number_to_words;
 
 public class Hundred {
 

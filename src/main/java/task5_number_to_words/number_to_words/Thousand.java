@@ -1,9 +1,18 @@
-package task5_number_to_words;
+package task5_number_to_words.number_to_words;
 
 public class Thousand {
 
+    public static int getThousandDigit(long number){
+        return getThousands(number)/1000;
+    }
+
+    public static int getThousands(long number){
+        return (int)(number % 1000000);
+    }
+
+
     public static String toString(long number) {
-        int thousand = Million.getThousandInPower(number, 1);
+        int thousand = getThousandDigit(number);
         String word = "";
         if (thousand != 0) {
             word = Hundred.toString(thousand);

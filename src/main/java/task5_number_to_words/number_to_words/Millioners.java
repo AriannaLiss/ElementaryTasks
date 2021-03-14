@@ -1,9 +1,11 @@
-package task5_number_to_words;
+package task5_number_to_words.number_to_words;
+
+import java.math.BigInteger;
 
 /**
  * shor scale
  */
-public class Million {
+public class Millioners {
     private static final String ILLION = "иллион";
     private static final String[] START_SYMBOLS = {"м","б","тр","квадр","квинт","секст","септ","окт","нон","дец"};
     private static final String[] START_OVER_36_POW ={"ун","дун","тре","кваттор","квин","секс","септ","окто","новем"};
@@ -21,21 +23,24 @@ public class Million {
         return nameOfPosition + ILLION;
     }
 
-    public static int getThousandInPower(long number, int thousandPower){
-        return (int)(getRestOfThousandInPower(number,thousandPower+1) / Math.pow(1000,thousandPower));
+    public static int getThousandInPower(BigInteger number, int thousandPower){
+        return getRestOfThousandInPower(number,thousandPower+1).divide(thousandPow(thousandPower)).intValue();
     }
     //TODO BitInteger
-    public static long getRestOfThousandInPower(long number, int thousandPower){
-        return (long) (number % Math.pow(1000,thousandPower));
+    public static BigInteger getRestOfThousandInPower(BigInteger number, int thousandPower){
+        return number.remainder(thousandPow(thousandPower));
+    }
+    public static BigInteger thousandPow(int thousandPower){
+        return BigInteger.TEN.pow(thousandPower*3);
     }
     //TODO BigInteger
-    public static String toString(long number) {
+    public static String toString(BigInteger number) {
         String word = "";
         int thousandPower = 1;
-        while ((int) (number / Math.pow(1000, thousandPower + 1)) != 0) {
+        while (number.compareTo(thousandPow(thousandPower + 1)) >= 0) {//?
             thousandPower++;
         }
-        if (thousandPower == 1) return Thousand.toString(number);
+        if (thousandPower == 1) return Thousand.toString(number.longValue());
         int thousand = getThousandInPower(number, thousandPower);
         if (thousand != 0) {
             word = Hundred.toString(thousand) + " " + getNameOfPosition(thousandPower);
@@ -47,9 +52,9 @@ public class Million {
                     word += (unit < 5) && (unit != 0) ? "а" : "ов";
                 }
             }
-            if (getRestOfThousandInPower(number, thousandPower) == 0) return word;//?
+            if (getRestOfThousandInPower(number, thousandPower).signum() == 0) return word;//?
             word += " ";
         }
-        return word + Million.toString(getRestOfThousandInPower(number, thousandPower));
+        return word + Millioners.toString(getRestOfThousandInPower(number, thousandPower));
     }
 }
