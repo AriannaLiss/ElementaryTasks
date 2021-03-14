@@ -13,8 +13,9 @@ public class Application {
         /*for(String num: args){
             dialog.print(num+": "+NumberInWords.toString(Integer.parseInt(num))+"\n");
         }*/
-        for (int i=0;i<1000;i++){
+      //  for (int i=1000;i<10000;i++){
+       int i=9998;
             dialog.print(i+": "+ NumberToWords.toString(i)+"\n");
-        }
+    //    }
     }
 }
