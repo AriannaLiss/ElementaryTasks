@@ -1,28 +1,52 @@
 package task5_number_to_words;
 
-public class Million extends Thousand{
-    public static String toString(long number){
-        return toString(number,true);
-    }
-    public static String toString(long number, boolean printUnit){
-        int million = getThousandInPower(number,2);
-        String word = Thousand.toString(million,true);
-        if (getDecade(million)!=1) {
-            int unit = getUnit(million);
-            switch (unit) {
-                case 1:
-                    word += "миллион";
-                    break;
-                case 2: case 3: case 4:
-                    word += "миллиона";
-                    break;
-                default:
-                    word += " миллионов";
-                    break;
-            }
+/**
+ * shor scale
+ */
+public class Million {
+    private static final String ILLION = "иллион";
+    private static final String[] START_SYMBOLS = {"м","б","тр","квадр","квинт","секст","септ","окт","нон","дец"};
+    private static final String[] START_OVER_36_POW ={"ун","дун","тре","кваттор","квин","секс","септ","окто","новем"};
+
+    private static String getNameOfPosition(int thousandPower) {
+        String nameOfPosition;
+        if (thousandPower < 12) {
+            nameOfPosition = START_SYMBOLS[thousandPower - 2];
         } else {
-            word += " миллионов";
+            nameOfPosition = START_OVER_36_POW[thousandPower - 12] + START_SYMBOLS[START_SYMBOLS.length - 1];
         }
-        return word + " " + Thousand.toString(number);
+        return nameOfPosition + ILLION;
+    }
+
+    public static int getThousandInPower(long number, int thousandPower){
+        return (int)(getRestOfThousandInPower(number,thousandPower+1) / Math.pow(1000,thousandPower));
+    }
+    //BitInteger?
+    public static long getRestOfThousandInPower(long number, int thousandPower){
+        return (long) (number % Math.pow(1000,thousandPower));
+    }
+    //BigInteger
+    public static String toString(long number) {
+        String word = "";
+        int thousandPower = 1;
+        while ((int) (number / Math.pow(1000, thousandPower + 1)) != 0) {
+            thousandPower++;
+        }
+        if (thousandPower == 1) return Thousand.toString(number);
+        int thousand = getThousandInPower(number, thousandPower);
+        if (thousand != 0) {
+            word = Hundred.toString(thousand) + " " + getNameOfPosition(thousandPower);
+            if (Decade.getDecadeDigit(thousand) == 1) {// || (Decade.getDecades(thousand) == 0)) {
+                word += "ов";
+            } else {
+                int unit = Unit.getUnit(thousand);
+                if (unit != 1) {
+                    word += (unit < 5) && (unit != 0) ? "а" : "ов";
+                }
+            }
+            if (getRestOfThousandInPower(number, thousandPower) == 0) return word;//?
+            word += " ";
+        }
+        return word + Million.toString(getRestOfThousandInPower(number, thousandPower));
     }
 }

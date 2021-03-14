@@ -1,33 +1,38 @@
 package task5_number_to_words;
 
-public class Hundred extends Decade{
+public class Hundred {
 
-    public static int getHundred(long number){
-        return (int)((number % 1000)/100);
+    public static int getHundredDigit(long number){
+        return getHundreds(number)/100;
     }
+
+    public static int getHundreds(long number){
+        return (int)(number % 1000);
+    }
+
     public static String toString(long number){
-        return toString(number,true);
-    }
-
-    public static String toString(long number, boolean printUnit){
-        int unit = getHundred(number);
-        String word;
-        switch(unit) {
-            case 0:
-                return Decade.toString(number);//prunit
-            case 1:
-                word = "сто";
-                break;
-            case 2:
-                word = "двести";
-                break;
-            case 3: case 4:
-                word = Unit.toString(unit)+"ста";
-                break;
-            default:
-                word = Unit.toString(unit)+"сот";
-                break;
+        int hundred = getHundredDigit(number);
+        String word = "";
+        if (hundred>0) {
+            switch (hundred) {
+                case 1:
+                    word = "сто";
+                    break;
+                case 2:
+                    word = "двести";
+                    break;
+                default:
+                    word = Unit.toString(hundred);
+                    if ((hundred == 3) || (hundred == 4)) {
+                        word += "ста";
+                    } else {
+                        word += "сот";
+                    }
+            }
+            if (Decade.getDecades(number) != 0) {
+                word += " ";
+            }
         }
-        return word + " " + Decade.toString(number);
+        return word + Decade.toString(number);
     }
 }
