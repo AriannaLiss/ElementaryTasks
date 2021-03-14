@@ -10,8 +10,11 @@ public class Million {
 
     private static String getNameOfPosition(int thousandPower) {
         String nameOfPosition;
+        if (thousandPower>21) throw new RuntimeException("Program works with numbers <= 10^66.");
         if (thousandPower < 12) {
             nameOfPosition = START_SYMBOLS[thousandPower - 2];
+        }  else if (thousandPower == 21){
+            nameOfPosition = "вигинт";
         } else {
             nameOfPosition = START_OVER_36_POW[thousandPower - 12] + START_SYMBOLS[START_SYMBOLS.length - 1];
         }
@@ -21,11 +24,11 @@ public class Million {
     public static int getThousandInPower(long number, int thousandPower){
         return (int)(getRestOfThousandInPower(number,thousandPower+1) / Math.pow(1000,thousandPower));
     }
-    //BitInteger?
+    //TODO BitInteger
     public static long getRestOfThousandInPower(long number, int thousandPower){
         return (long) (number % Math.pow(1000,thousandPower));
     }
-    //BigInteger
+    //TODO BigInteger
     public static String toString(long number) {
         String word = "";
         int thousandPower = 1;
