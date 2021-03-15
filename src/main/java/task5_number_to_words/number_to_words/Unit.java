@@ -2,30 +2,23 @@ package task5_number_to_words.number_to_words;
 
 //only number>0
 public class Unit {
-    //long number;
-/*    enum Sex {MALE, FEMALE}
-    private Sex sex = Sex.FEMALE;
-*/
+
     public static int getUnit(long number){
         return (int)(number % 10);
     }
-/*
-    public static String unitToWord(long number){
-        return unitToWord(number,Sex.MALE);
-    }
-*/
+
     public static String toString(long number){
         String word="";
         int unit = getUnit(number);
         switch (unit) {
             case 0:
-                word = "";//(this.number != 0) ? "" : "ноль";
+                word = "";
                 break;
             case 1:
-                word = "один";// (sex==Sex.MALE) ? "один" : "одна";
+                word = "один";
                 break;
             case 2:
-                word = "два";// (sex==Sex.MALE) ? "два" : "две";
+                word = "два";
                 break;
             case 3:
                 word = "три";
@@ -62,22 +55,7 @@ public class Unit {
         return getUnit(number);
     }
 
-    void setFemaleSex(){
-        sex = Sex.FEMALE;
-    }
-
-    void resetSex(){
-        sex = Sex.MALE;
-    }
-
-    public Sex getSex(){
-        return sex;
-    }
-*/
-
-    /*public String unitToWord(){
+    public String unitToWord(){
         return unitToWord(number, sex);
     }*/
-
-
 }
