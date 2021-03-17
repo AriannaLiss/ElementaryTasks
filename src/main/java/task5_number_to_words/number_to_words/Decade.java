@@ -1,49 +1,50 @@
 package task5_number_to_words.number_to_words;
 
-public class Decade {
+public class Decade extends Number{
+    private static final int RATE = 10;
+    private static final String TEN = "десять";
+    private static final String FORTY = "сорок";
+    private static final String NINETY = "девяносто";
 
-    public static int getDecadeDigit(long number){
-        return getDecades(number)/10;
+    private static final String DVE_ = "две";
+    private static final String _NADTSAT = "надцать";
+    private static final String _DTSAT = "дцать";
+    private static final String _DESYAT = "десят";
+
+    Decade(int number){
+        super(number, RATE);
     }
 
-    public static int getDecades(long number){
-        return (int)(number % 100);
-    }
-
-    public static String toString(long number){
-        int decade = getDecadeDigit(number);
-        String word="";
-        if (decade>0) {
-            switch (decade) {
-                case 1:
-                    int unit = Unit.getUnit(number);
-                    switch (unit) {
-                        case 0:
-                            return "десять";
-                        case 2:
-                            word = "две";
-                            break;
-                        default:
-                            word = Unit.toString(unit);
-                            if (unit >= 4) {
-                                word = word.substring(0, word.length() - 1);
-                            }
+    @Override
+    public String toString(Sex sex){
+        StringBuilder word = new StringBuilder(EMPTY_STRING);
+        int decade = getRateDigit();
+        if (decade != 0) {
+            if (decade > 0) {
+                if (decade == 1) {
+                    int unit = getUnit();
+                    if (unit == 0) {
+                        return TEN;
+                    } else if (unit == 2) {
+                        word.append(DVE_);
+                    } else {
+                        word.append(new Unit(unit));
+                        if (unit >= 4) {
+                            word.deleteCharAt(word.length()-1);
+                        }
                     }
-                    return word + "надцать";
-                case 4:
-                    word = "сорок";
-                    break;
-                case 9:
-                    word = "девяносто";
-                    break;
-                default:
-                    word = Unit.toString(decade);
-                    word += (decade < 5) ? "дцать" : "десят";
-            }
-            if (Unit.getUnit(number)!=0) {
-                word += " ";
+                    return word.append(_NADTSAT).toString();
+                } else if (decade == 4) {
+                    word.append(FORTY);
+                } else if (decade == 9) {
+                    word.append(NINETY);
+                } else {
+                    word.append(new Unit(decade));
+                    if (decade < 5) { word.append(_DTSAT); }
+                    else { word.append(_DESYAT); }
+                }
             }
         }
-        return word+Unit.toString(number);
+        return combineWords(word, new Unit(getUnit()).toString(sex));
     }
 }

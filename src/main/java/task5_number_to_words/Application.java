@@ -4,6 +4,7 @@ import general.Dialog;
 import general.IntegerValidator;
 import general.Validator;
 import task5_number_to_words.number_to_words.NumberToWords;
+import task5_number_to_words.number_to_words.Word;
 
 import java.math.BigInteger;
 
@@ -26,8 +27,9 @@ public class Application {
         for (String num : args) {
             if (validator.isNumber(num)) {
                 try {
-                    dialog.print(num + " - " + NumberToWords.toString(new BigInteger(num)) + "\n");
-                } catch (Exception e) {
+                    NumberToWords ntw = new NumberToWords(new BigInteger(num));
+                    dialog.print(num + " - " + ntw + "\n");
+                } catch (Exception e) { //TODO my exception
                     dialog.print((e.getMessage()));
                 }
             } else {

@@ -1,38 +1,34 @@
 package task5_number_to_words.number_to_words;
 
-public class Hundred {
+public class Hundred extends Number {
+    private static final int RATE = 100;
+    private static final String HUNDRED = "сто";
+    private static final String TWO_HUNDRED = "двести";
+    private static final String _STA = "ста";
+    private static final String _SOT = "сот";
 
-    public static int getHundredDigit(long number){
-        return getHundreds(number)/100;
+    Hundred(int number) {
+        super(number, RATE);
     }
 
-    public static int getHundreds(long number){
-        return (int)(number % 1000);
-    }
-
-    public static String toString(long number){
-        int hundred = getHundredDigit(number);
-        String word = "";
-        if (hundred>0) {
-            switch (hundred) {
-                case 1:
-                    word = "сто";
-                    break;
-                case 2:
-                    word = "двести";
-                    break;
-                default:
-                    word = Unit.toString(hundred);
-                    if ((hundred == 3) || (hundred == 4)) {
-                        word += "ста";
-                    } else {
-                        word += "сот";
-                    }
-            }
-            if (Decade.getDecades(number) != 0) {
-                word += " ";
+    @Override
+    public String toString(Sex sex) {
+        int hundred = getRateDigit();
+        StringBuilder word = new StringBuilder(EMPTY_STRING);
+        if (hundred > 0) {
+            if (hundred == 1) {
+                word.append(HUNDRED);
+            } else if (hundred == 2) {
+                word.append(TWO_HUNDRED);
+            } else {
+                word.append(new Unit(hundred));
+                if ((hundred == 3) || (hundred == 4)) {
+                    word.append(_STA);
+                } else {
+                    word.append(_SOT);
+                }
             }
         }
-        return word + Decade.toString(number);
+        return combineWords(word, new Decade(getDecades()).toString(sex));
     }
 }

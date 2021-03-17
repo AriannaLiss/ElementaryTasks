@@ -1,43 +1,44 @@
 package task5_number_to_words.number_to_words;
 
-public class Thousand {
+/**
+ * works with int numbers under 1000000
+ */
+public class Thousand extends Number{
+    private static final int RATE = 1000;
+    private static final String THOUSANDS = " тысяч";
+    private static final String _I = "и";
 
-    public static int getThousandDigit(long number){
-        return getThousands(number)/1000;
+    Thousand(int number){
+        super(number,RATE);
     }
 
-    public static int getThousands(long number){
-        return (int)(number % 1000000);
+    private int getThousandAmount(){
+        return getThousands()/RATE;
     }
 
-
-    public static String toString(long number) {
-        int thousand = getThousandDigit(number);
-        String word = "";
+    @Override
+    public String toString (Sex sex) {
+        int thousand = getThousandAmount();
+        StringBuilder word = new StringBuilder(EMPTY_STRING);
         if (thousand != 0) {
-            word = Hundred.toString(thousand);
-            if (Decade.getDecadeDigit(thousand) == 1) {// || (thousand % 100 == 0)) {
-                word += " тысяч";
-            } else {
-                int unit = Unit.getUnit(thousand);
-                if ((unit == 1) || (unit == 2)) {
-                    word = word.substring(0, word.length() - 2);
-                }
-                switch (unit) {
-                    case 1:
-                        word += "на тысяча";
-                        break;
-                    case 2:
-                        word += "ве";
-                    default:
-                        word += (unit < 5) && (unit != 0) ? " тысячи" : " тысяч";
-                }
+            word
+                    .append(new Hundred(thousand).toString(Sex.FEMALE))
+                    .append(THOUSANDS)
+                    .append(getEnd(thousand));
+        }
+        return combineWords(word, new Hundred(getHundreds()).toString(sex));
+    }
 
-            }
-            if (Hundred.getHundreds(number) != 0) {
-                word += " ";
+    private String getEnd(int thousand){
+        int decade = getDecadeFigure(thousand);
+        if (decade!=1) {
+            int unit = getUnit(thousand);
+            if (unit == 1) {
+                return _A;
+            } else if ((unit > 1) && (unit < 5)) {
+                return _I;
             }
         }
-        return word + Hundred.toString(number);
+        return EMPTY_STRING;
     }
 }
