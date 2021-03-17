@@ -28,7 +28,6 @@ public class Millionaire implements Word {
 
     private String getNameOfPosition(int thousandPower) {
         String nameOfPosition;
-        //TODO my exception
         if (thousandPower > 21) throw new OutOfBoundsNumberException();
         if (thousandPower < 12) {
             nameOfPosition = START_SYMBOLS[thousandPower - 2];

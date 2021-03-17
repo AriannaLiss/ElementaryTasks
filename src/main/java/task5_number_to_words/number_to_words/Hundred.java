@@ -16,17 +16,20 @@ public class Hundred extends Number {
         int hundred = getRateDigit();
         StringBuilder word = new StringBuilder(EMPTY_STRING);
         if (hundred > 0) {
-            if (hundred == 1) {
-                word.append(HUNDRED);
-            } else if (hundred == 2) {
-                word.append(TWO_HUNDRED);
-            } else {
-                word.append(new Unit(hundred));
-                if ((hundred == 3) || (hundred == 4)) {
-                    word.append(_STA);
-                } else {
-                    word.append(_SOT);
-                }
+            switch(hundred) {
+                case 1:
+                    word.append(HUNDRED);
+                    break;
+                case 2:
+                    word.append(TWO_HUNDRED);
+                    break;
+                default:
+                    word.append(new Unit(hundred));
+                    if ((hundred == 3) || (hundred == 4)) {
+                        word.append(_STA);
+                    } else {
+                        word.append(_SOT);
+                    }
             }
         }
         return combineWords(word, new Decade(getDecades()).toString(sex));

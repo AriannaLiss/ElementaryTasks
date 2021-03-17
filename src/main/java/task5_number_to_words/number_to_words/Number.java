@@ -19,7 +19,7 @@ public abstract class Number implements Word {
         return cutNumber(number,rate * 10)/rate;
     }
     int getUnit(int number){return cutNumber(number,10);}
-    int getDecadeFigure(int number){return getRateDigit(number,100);}
+    int getDecadeFigure(int number){return getRateDigit(number,10);}
     int getDecades(int number){return cutNumber(number,100);}
 
     int getRateDigit(){
