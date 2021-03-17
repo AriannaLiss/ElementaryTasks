@@ -15,6 +15,10 @@ import general.Dialog;
 public class Main {
     public static void main(String[] args) {
         Dialog dialog = new ConsoleDialog();
-        new Application(dialog).run(args);
+        try {
+            new Application(dialog).run(args);
+        } catch (Exception e) {
+            dialog.print(e.getMessage());
+        }
     }
 }

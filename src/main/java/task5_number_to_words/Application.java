@@ -1,17 +1,21 @@
 package task5_number_to_words;
 
+import general.ConstGeneral;
 import general.Dialog;
 import general.IntegerValidator;
 import general.Validator;
 import task5_number_to_words.number_to_words.NumberToWords;
-import task5_number_to_words.number_to_words.Word;
+import task5_number_to_words.number_to_words.OutOfBoundsNumberException;
 
 import java.math.BigInteger;
 
 public class Application {
     private final String RULLS = "This application translates an integer number into words.\n" +
             "Example: 12 - двенадцать.\n" +
-            "Application with integer numbers less 10^66 \n";
+            "Application works with integer numbers less 10^66 \n";
+    private final String NOT_INTEGER = " is not an integer number.\n";
+    private final String DO_RUN_TEST = "Would you like to run a test? (y/n) ";
+
     private Dialog dialog;
     private Validator validator;
 
@@ -28,15 +32,15 @@ public class Application {
             if (validator.isNumber(num)) {
                 try {
                     NumberToWords ntw = new NumberToWords(new BigInteger(num));
-                    dialog.print(num + " - " + ntw + "\n");
-                } catch (Exception e) { //TODO my exception
+                    dialog.print(num + ConstGeneral.DASH + ntw + ConstGeneral.NEW_LINE);
+                } catch (OutOfBoundsNumberException e) {
                     dialog.print((e.getMessage()));
                 }
             } else {
-                dialog.print("'" + num + "' is not an integer number.\n");
+                dialog.print(ConstGeneral.QUOTE + num + ConstGeneral.QUOTE + NOT_INTEGER);
             }
         }
-        if (validator.yesNo("Would you like to run a test? (y/n) ")) {
+        if (validator.yesNo(DO_RUN_TEST)) {
             new Test(dialog).run();
         }
     }
