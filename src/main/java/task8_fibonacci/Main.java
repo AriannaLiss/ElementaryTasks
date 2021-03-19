@@ -1,6 +1,6 @@
 package task8_fibonacci;
 
-import general.ConsoleDialog;
+import general.ConsoleInputOutput;
 
 /**
  * Show all Fibonacci's numbers, that fit to condition:
@@ -10,7 +10,7 @@ import general.ConsoleDialog;
 public class Main {
 
     public static void main(String... args){
-        Application task8 = new Application(new ConsoleDialog());
+        Application task8 = new Application(new ConsoleInputOutput());
         task8.run(args);
     }
 }

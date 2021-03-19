@@ -1,15 +1,17 @@
 package task8_fibonacci;
 
 import general.Dialog;
+import general.InputOutput;
 import general.IntegerValidator;
 
 public class Application {
-    private Dialog dialog;
+    private InputOutput io;
     private IntegerValidator validator;
+    private Dialog dialog;
 
-    Application(Dialog dialog){
-        this.dialog = dialog;
-        validator = new IntegerValidator(dialog);
+    Application(InputOutput io){
+        this.io = io;
+        this.validator = new IntegerValidator();
     }
 
     public void run(String... args) {
@@ -21,13 +23,13 @@ public class Application {
             } else if ((args.length > 1) && validator.isNumberInRange(args[0],Const.LOW_BOUND,Const.HIGH_BOUND) &&
                     validator.isNumberInRange(args[1],Const.LOW_BOUND,Const.HIGH_BOUND)) {
                 fibonacci.getFibonacciRow(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-                dialog.print(fibonacci.toString());
+                io.print(fibonacci.toString());
             } else {
-                dialog.print(Const.RULES);
+                io.print(Const.RULES);
             }
         }
         catch (Exception e){
-            dialog.print(e.toString()+"\n"+Const.RULES);
+            io.print(e.toString()+"\n"+Const.RULES);
         }
     }
 }

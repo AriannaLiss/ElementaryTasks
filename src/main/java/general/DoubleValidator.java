@@ -1,8 +1,6 @@
 package general;
 
-public class DoubleValidator extends Validator {
-
-    public DoubleValidator(Dialog dialog) { super(dialog); }
+public class DoubleValidator extends NumberValidator {
 
     @Override
     public boolean isNumber (String arg){
@@ -18,13 +16,4 @@ public class DoubleValidator extends Validator {
     @Override
     protected Double parseNumber(String arg) { return Double.parseDouble(arg); }
 
-    @Override
-    public Double getNotZeroPositiveNumber(String msg){
-        return super.getNotZeroPositiveNumber(msg).doubleValue();
-    }
-
-    @Override
-    public Double getNumberInRange(String msg, double from, double to){
-        return (Double)super.getNumberInRange(msg,from,to);
-    }
 }

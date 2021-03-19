@@ -2,7 +2,7 @@ package general;
 
 import java.util.Scanner;
 
-public class ConsoleDialog extends Dialog {
+public class ConsoleInputOutput extends InputOutput {
     public static final Scanner in = new Scanner(System.in);
 
     @Override

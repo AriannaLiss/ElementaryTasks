@@ -1,6 +1,6 @@
 package task7_number_sequence;
 
-import general.ConsoleDialog;
+import general.ConsoleInputOutput;
 
 /**
  * Number sequence.
@@ -14,7 +14,7 @@ import general.ConsoleDialog;
 public class Main {
 
     public static void main(String... args){
-        Application task7 = new Application(new ConsoleDialog());
+        Application task7 = new Application(new ConsoleInputOutput());
         task7.run(args);
     }
 }
