@@ -7,11 +7,6 @@ public class DoubleValidator extends NumberValidator {
         return arg.matches("\\s*-?\\d+(\\.\\d+)?\\s*");
     }
 
-    @Override
-    public boolean isPositiveNumber (String arg){
-        return arg.matches("\\s*\\d+(\\.\\d+)?\\s*");
-    }
-
     //could be exception
     @Override
     protected Double parseNumber(String arg) { return Double.parseDouble(arg); }

@@ -28,8 +28,8 @@ public class Application {
     private Envelope inputEnvelope(String whichEnvelope) {
         double width, height;
         dialog.print(whichEnvelope);
-        width = (double)dialog.getNotZeroPositiveNumber(Const.WELCOME_MSG);
-        height = (double)dialog.getNotZeroPositiveNumber(Const.WELCOME_MSG);
+        width = dialog.getNotZeroPositiveNumber(Const.WELCOME_MSG).doubleValue();
+        height = dialog.getNotZeroPositiveNumber(Const.WELCOME_MSG).doubleValue();
         return new Envelope(width, height);
     }
 
