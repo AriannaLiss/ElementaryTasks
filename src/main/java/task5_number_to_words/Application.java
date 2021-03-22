@@ -8,6 +8,9 @@ import task5_number_to_words.number_to_words.NumberToWords;
 import task5_number_to_words.number_to_words.OutOfBoundsNumberException;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Application {
     private final String RULLS = "This application translates an integer number into words.\n" +
