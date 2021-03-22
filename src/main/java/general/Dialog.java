@@ -18,6 +18,11 @@ public class Dialog{
     }
 
     public Number getNumber(String msg){
+       return validator.parseNumber(getStringNumber(msg));
+    }
+
+    //getNumber without parsing
+    public String getStringNumber(String msg){
         String data;
         do {
             io.print(msg);
@@ -26,7 +31,7 @@ public class Dialog{
                 io.print(ConstGeneral.NOT_VALID_DATA);
             }
             else{
-                return validator.parseNumber(data);
+                return data;
             }
         }
         while(true);

@@ -8,21 +8,17 @@ public class Application {
     private Dialog dialog;
 
     Application(InputOutput io) {
-        dialog = new Dialog(io,new DoubleValidator());
+        dialog = new Dialog(io, new DoubleValidator());
     }
 
     public void run() {
         Envelope env1, env2;
-        try {
-            do {
-                env1 = inputEnvelope(Const.FIRST_ENVELOPE);
-                env2 = inputEnvelope(Const.SECOND_ENVELOPE);
-                dialog.print(compareEnvelopes(env1, env2));
-            }
-            while (dialog.yesNo());
-        } catch (Exception e) {
-            dialog.print(e.getMessage());
+        do {
+            env1 = inputEnvelope(Const.FIRST_ENVELOPE);
+            env2 = inputEnvelope(Const.SECOND_ENVELOPE);
+            dialog.print(compareEnvelopes(env1, env2));
         }
+        while (dialog.yesNo());
     }
 
     private Envelope inputEnvelope(String whichEnvelope) {
@@ -34,9 +30,9 @@ public class Application {
     }
 
     private String compareEnvelopes(Envelope env1, Envelope env2) {
-        if (env1.isPossiblePut(env2)){
+        if (env1.isPossiblePut(env2)) {
             return Const.FIRST_GREATER;
-        } else if (env2.isPossiblePut(env1)){
+        } else if (env2.isPossiblePut(env1)) {
             return Const.SECOND_GREATER;
         }
         return Const.DONT_FIT;
