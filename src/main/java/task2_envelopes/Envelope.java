@@ -29,12 +29,16 @@ public class Envelope {
         return (e != null) && (isFitStraight(e) || isFitDiagonal(e));
     }
 
-    //Return true if Envelope [e] goes straight into this envelope
+    /**
+     * It returns true if Envelope [e] goes straight into this envelope
+     */
     private boolean isFitStraight(Envelope e) {
         return ((e.width < width) && (e.height < height)) || ((e.height < width) && (e.width < height));
     }
 
-    //Return true if Envelope [e] goes into this envelope on the diagonal
+    /**
+     * It returns true if Envelope [e] goes into this envelope on the diagonal
+     */
     private boolean isFitDiagonal(Envelope e) {
         double diagonal = Math.sqrt(Math.pow(e.width, 2) + Math.pow(e.height, 2));
         double h12 = Math.pow(diagonal, 2) - Math.pow(width, 2);

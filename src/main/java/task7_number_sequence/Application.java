@@ -1,17 +1,41 @@
 package task7_number_sequence;
 
 import general.ConstGeneral;
+import general.Dialog;
 import general.InputOutput;
 import general.IntegerValidator;
+import task8_fibonacci.Fibonacci;
+
 import java.util.Arrays;
 
+/**
+ * Number sequence.
+ *
+ * This application returns you a natural number sequence separated by comma.
+ * Parameters: two natural numbers: n m
+ * Where:      n is a length of the sequence
+ *             m is a minimal square for numbers in the sequence.
+ * Output:     the sequence with n natural numbers (theirs square are not less m).
+ */
 public class Application {
     private InputOutput io;
     private IntegerValidator validator;
+    private Dialog dialog;
 
     Application(InputOutput io){
         this.io = io;
         validator = new IntegerValidator();
+        dialog = new Dialog(io, validator);
+    }
+
+    public void run(){
+        dialog.print(Const.RULES);
+        do {
+            int length = dialog.getNotZeroPositiveNumber(Const.LENGTH).intValue();
+            double sqrt = dialog.getNotZeroPositiveNumber(Const.SQR).doubleValue();
+            io.print(Arrays.toString(NumberSequence.getNumberSequence(length,sqrt)) + "\n");
+        }
+        while (dialog.yesNo());
     }
 
     public void run(String... args) {

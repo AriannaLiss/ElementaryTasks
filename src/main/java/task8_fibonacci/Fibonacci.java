@@ -62,8 +62,10 @@ public class Fibonacci {
         return init(f, f2);
     }
 
-    //from>=0 and to>=0
-    //from and to < 1000000000
+    /**
+     * from>=0 and to>=0
+     * from and to < 1000000000
+     */
     public List<Integer> getFibonacciRow(int from, int to){
         if (from>to){
             int buf = from;
@@ -88,8 +90,10 @@ public class Fibonacci {
         }
     }
 
-    //Requirements: (countOfDigits>0)&&(countOfDigits<10)
-    //return fibonacci row with numbers witch have countOfDigits digits
+    /**
+     * Requirements: (countOfDigits>0)&&(countOfDigits<10)
+     *  return fibonacci row with numbers witch have countOfDigits digits
+     */
     public List<Integer> getFibonacciRow(int countOfDigits){
         int from=0,to=9;
         if(countOfDigits>1){

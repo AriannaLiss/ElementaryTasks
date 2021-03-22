@@ -3,19 +3,19 @@ package task2_envelopes;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class EnvelopeTest {
 
     @Test
-    void testIsPossiblePutStright() {
+    void testIsPossiblePutStraight() {
         //given
         Envelope envelope1 = new Envelope(2,5);
         Envelope envelope2 = new Envelope(4,1);
         //when
         boolean actual = envelope1.isPossiblePut(envelope2);
         //then
-        assertEquals(true,actual);
+        assertTrue(actual);
     }
 
     @Test
@@ -26,7 +26,7 @@ class EnvelopeTest {
         //when
         boolean actual = envelope1.isPossiblePut(envelope2);
         //then
-        assertEquals(true,actual);
+        assertTrue(actual);
     }
 
     @Test
@@ -37,7 +37,7 @@ class EnvelopeTest {
         //when
         boolean actual = envelope2.isPossiblePut(envelope1);
         //then
-        assertEquals(false,actual);
+        assertFalse(actual);
     }
 
     @Test
@@ -47,6 +47,6 @@ class EnvelopeTest {
         //when
         boolean actual = envelope1.isPossiblePut(envelope1);
         //then
-        assertEquals(false,actual);
+        assertFalse(actual);
     }
 }
