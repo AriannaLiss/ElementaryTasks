@@ -14,7 +14,7 @@ public class Test {
     private static final String RANDOM_BIG_NUMBERS = "\nRandom big numbers:\n";
     private static final String BOUNDS_VALUES = "\nBounds values:\n";
     private final BigInteger BIG_NUMBER = new BigInteger("-4056064506500005062000545005064");
-    private final BigInteger MINUS_ONE = BigInteger.valueOf(-1l);
+    private final BigInteger MINUS_ONE = BigInteger.valueOf(-1L);
     private final long[] test = {
             -395, 0, 9879, -0, 100000, -440260, 350650, 321105, -711123,
             10324, 0232, 601052, 132004, 400012, 100000000, 50288241, 96105619
@@ -28,7 +28,6 @@ public class Test {
 
     public void run() {
         testArray();
-        testArray(Word.Sex.FEMALE);
         testString(BIG_NUMBER);
         boundsTesting();
         testRandomBigNumbers();
@@ -52,15 +51,10 @@ public class Test {
         testString(MAX_VALUE.multiply(MINUS_ONE));
     }
 
-    private void testArray(Word.Sex sex){
-        dialog.print(ConstGeneral.NEW_LINE + sex.toString() + ConstGeneral.NEW_LINE);
-        for (long n : test) {
-            testString(BigInteger.valueOf(n),sex);
-        }
-    }
-
     private void testArray(){
-        testArray(Word.Sex.MALE);
+        for (long n : test) {
+            testString(BigInteger.valueOf(n));
+        }
     }
 
     private void testRandomBigNumbers(){
@@ -69,18 +63,14 @@ public class Test {
         for (int i = 0; i < 10; i++) {
             StringBuilder n = new StringBuilder(ConstGeneral.EMPTY_STRING);
             int countOfDigits = random.nextInt(MAX_POW);
-            for (int j = 1; j < countOfDigits+1; j++) {
+            for (int j = 0; j < countOfDigits+1; j++) {
                 n.append(randomFigure(random));
             }
             testString(new BigInteger(n.toString()));
         }
     }
 
-    private void testString(BigInteger n, Word.Sex sex) {
-        dialog.print(n + ConstGeneral.DASH + new NumberToWords(n).toString(sex) + ConstGeneral.NEW_LINE);
-    }
-
     private void testString(BigInteger n) {
-        testString(n, Word.Sex.MALE);
+        dialog.print(n + " - " + new NumberToWords(n).toString() + ".\n");
     }
 }

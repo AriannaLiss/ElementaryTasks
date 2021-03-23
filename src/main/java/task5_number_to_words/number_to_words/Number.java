@@ -1,38 +1,36 @@
 package task5_number_to_words.number_to_words;
 
-public abstract class Number implements Word {
-
-    private int number;
-    private int rate;
+abstract class Number {
+    enum Gender {MALE, FEMALE}
+    private final short number;
 
     /**
-     * class Number and his children works only with number>0
+     * class Number and his children works only with number > 0
      */
-    Number(int number,int rate){
+    Number(short number){
         this.number = number;
-        this.rate = rate;
     }
 
-    private int cutNumber(int number, int rate) { return number % rate; }
-
-    int getRateDigit(int number,int rate){
-        return cutNumber(number,rate * 10)/rate;
-    }
-    int getUnit(int number){return cutNumber(number,10);}
-    int getDecadeFigure(int number){return getRateDigit(number,10);}
-    int getDecades(int number){return cutNumber(number,100);}
-
-    int getRateDigit(){
-        return getRateDigit(number,rate);
-    }
-    int getDecadeFigure(){return getDecadeFigure(number);}
-    int getUnit(){ return getUnit(number); }
-    int getDecades(){ return getDecades(number); }
-    int getHundreds(){ return cutNumber(number,1000); }
-    int getThousands(){ return cutNumber(number,1000000); }
+    byte getHundredFigure(){ return (byte) ((number % 1000) / 100); }
+    byte getDecadeFigure() { return (byte) ((number % 100) / 10); }
+    byte getUnit(){ return (byte)(number % 10); }
+    byte getDecades(){ return (byte)(number % 100); }
 
     @Override
     public String toString(){
-        return toString(Sex.MALE);
+        return toString(Gender.MALE);
+    }
+
+    abstract String toString (Gender gender);
+
+    String combineWords(StringBuilder word1, String word2){
+        StringBuilder word = new StringBuilder(word1);
+        if (!word2.isEmpty()){
+            if (word1.length()!=0){
+                word.append(Word.SPACE);
+            }
+            word.append(word2);
+        }
+        return word.toString();
     }
 }

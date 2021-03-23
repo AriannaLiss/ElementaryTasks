@@ -1,6 +1,6 @@
 package task5_number_to_words.number_to_words;
 
-public class Unit extends Number{
+class Unit extends Number{
     private static final String ONE = "один";
     private static final String ONE_FEM = "одна";
     private static final String TWO = "два";
@@ -13,22 +13,22 @@ public class Unit extends Number{
     private static final String EIGHT = "восемь";
     private static final String NINE = "девять";
 
-    Unit(int number){
-        super(number,1);
+    Unit(short number){
+        super(number);
     }
 
     @Override
-    public String toString(Sex sex){
-        String word=EMPTY_STRING;
+    public String toString(Gender gender){
+        String word = Word.EMPTY_STRING;
         switch (getUnit()) {
             case 0:
-                word = EMPTY_STRING;
+                word = Word.EMPTY_STRING;
                 break;
             case 1:
-                word = (sex==Sex.FEMALE) ? ONE_FEM : ONE;
+                word = (gender == Gender.FEMALE) ? ONE_FEM : ONE;
                 break;
             case 2:
-                word = (sex==Sex.FEMALE) ? TWO_FEM : TWO;
+                word = (gender == Gender.FEMALE) ? TWO_FEM : TWO;
                 break;
             case 3:
                 word = THREE;

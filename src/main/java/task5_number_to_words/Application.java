@@ -10,6 +10,7 @@ public class Application {
     private final String RULLS = "This application translates an integer number into words.\n" +
             "Example: 12 - двенадцать.\n" +
             "Application works with integer numbers less 10^66 \n";
+    private final String INPUT_NUMBER = "Please, input number for translation: ";
     private final String NOT_INTEGER = " is not an integer number.\n";
     private final String DO_RUN_TEST = "Would you like to run a test? (y/n) ";
 
@@ -21,6 +22,22 @@ public class Application {
         this.io = io;
         validator = new IntegerValidator();
         dialog = new Dialog(io,validator);
+    }
+
+    public void run(){
+        do {
+            BigInteger num = new BigInteger(dialog.getStringNumber(INPUT_NUMBER));
+            try{
+                NumberToWords ntw = new NumberToWords(num);
+                dialog.print(num.toString() + " - " + ntw+".\n");
+            } catch (OutOfBoundsNumberException e) {
+                dialog.print((e.getMessage()));
+            }
+        }
+        while(dialog.yesNo());
+        if (dialog.yesNo(DO_RUN_TEST)) {
+            new Test(dialog).run();
+        }
     }
 
     public void run(String[] args) {

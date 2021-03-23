@@ -9,10 +9,10 @@ class UnitTest {
     @Test
     void testToStringFemale() {
         //given
-        Unit unit = new Unit(1);
+        Unit unit = new Unit((short)1);
         String expected = "одна";
         //when
-        String actual = unit.toString(Word.Sex.FEMALE);
+        String actual = unit.toString(Number.Gender.FEMALE);
         //then
         assertEquals(expected,actual);
     }
@@ -20,7 +20,7 @@ class UnitTest {
     @Test
     void testToString() {
         //given
-        Unit unit = new Unit(1);
+        Unit unit = new Unit((short)1);
         String expected = "один";
         //when
         String actual = unit.toString();
@@ -31,7 +31,7 @@ class UnitTest {
     @Test
     void largeNumberTestToString() {
         //given
-        Unit unit = new Unit(10345);
+        Unit unit = new Unit((short)10345);
         String expected = "пять";
         //when
         String actual = unit.toString();
@@ -42,7 +42,7 @@ class UnitTest {
     @Test
     void testToStringZero() {
         //given
-        Unit unit = new Unit(0);
+        Unit unit = new Unit((short)0);
         String expected = "";
         //when
         String actual = unit.toString();
@@ -53,7 +53,7 @@ class UnitTest {
     @Test
     void negativeTestToString() {
         //given
-        Unit unit = new Unit(-2);
+        Unit unit = new Unit((short)-2);
         String expected = "";
         //when
         String actual = unit.toString();

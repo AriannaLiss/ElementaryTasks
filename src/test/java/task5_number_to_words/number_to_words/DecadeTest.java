@@ -9,10 +9,10 @@ public class DecadeTest {
     @Test
     void testToStringFemale() {
         //given
-        Decade decade = new Decade(32);
+        Decade decade = new Decade((short)32);
         String expected = "тридцать две";
         //when
-        String actual = decade.toString(Word.Sex.FEMALE);
+        String actual = decade.toString(Number.Gender.FEMALE);
         //then
         assertEquals(expected,actual);
     }
@@ -20,10 +20,10 @@ public class DecadeTest {
     @Test
     void testToString() {
         //given
-        Decade decade = new Decade(14);
+        Decade decade = new Decade((short)14);
         String expected = "четырнадцать";
         //when
-        String actual = decade.toString(Word.Sex.FEMALE);
+        String actual = decade.toString(Number.Gender.FEMALE);
         //then
         assertEquals(expected,actual);
     }
@@ -31,7 +31,7 @@ public class DecadeTest {
     @Test
     void largeNumberTestToString() {
         //given
-        Decade decade = new Decade(10345);
+        Decade decade = new Decade((short)10345);
         String expected = "сорок пять";
         //when
         String actual = decade.toString();
@@ -42,7 +42,7 @@ public class DecadeTest {
     @Test
     void testToStringZero() {
         //given
-        Decade decade = new Decade(0);
+        Decade decade = new Decade((short)0);
         String expected = "";
         //when
         String actual = decade.toString();
@@ -53,7 +53,7 @@ public class DecadeTest {
     @Test
     void negativeTestToString() {
         //given
-        Decade decade = new Decade(-23);
+        Decade decade = new Decade((short)-23);
         String expected = "";
         //when
         String actual = decade.toString();
