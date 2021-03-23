@@ -1,6 +1,5 @@
 import general.ConsoleInputOutput;
 import general.Dialog;
-import general.InputOutput;
 import general.IntegerValidator;
 
 public class Main {

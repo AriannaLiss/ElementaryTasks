@@ -10,18 +10,18 @@ import java.math.BigInteger;
 /**
  * Palindrome
  * <p>
- * This application return all palindromes from number or 0 if number doesn't have any palindromes.
+ * This application return all palindromes in the number.
  * Example:
  * number: 1234437
  * result: [44, 3443]
  * <p>
  * input: a number
- * output: list of palindromes or 0 if there are not palindromes
+ * output: list of palindromes or message if there are not any palindromes.
  */
 public class Application {
     private static final String INPUT_A_NUMBER = "Input a number: ";
     private static final String NO_PALINDROMES = "This number doesn't have any palindromes.\n";
-    private Dialog dialog;
+    private final Dialog dialog;
 
     Application(InputOutput io) {
         dialog = new Dialog(io, new IntegerValidator());
