@@ -14,7 +14,6 @@ package task1_chessboard;
  */
 
 public class ChessBoard {
-    static private final String rules = "Set height and width for chess board.\nExample: java Main 6 5";
     private final int height, width;
 
     ChessBoard(int height, int width) {
@@ -23,10 +22,6 @@ public class ChessBoard {
         }
         this.height = height;
         this.width = width;
-    }
-
-    public static String getRules() {
-        return rules;
     }
 
     public String getBoard() {

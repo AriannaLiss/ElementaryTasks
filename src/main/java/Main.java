@@ -5,7 +5,7 @@ import general.IntegerValidator;
 
 public class Main {
     private static final String CHOOSE_TASK = "Please, choose number of task: ";
-    private static final String TASKS =
+    private static final String TASKS = "Tasks\n" +
             "1 - Chess Board\n" +
             "2 - Envelopes\n" +
             "3 - Triangles\n" +
@@ -24,10 +24,14 @@ public class Main {
                 dialog.print(TASKS);
                 int task = dialog.getNumberInRange(CHOOSE_TASK, 1, 9).intValue();
                 switch (task) {
+                    case 1:
+                        task1_chessboard.Main.main(args); break;
                     case 2:
                         task2_envelopes.Main.main(args); break;
                     case 3:
                         task3_triangles.Main.main(args); break;
+                    case 5:
+                        task5_number_to_words.Main.main(args); break;
                     case 7:
                         task7_number_sequence.Main.main(args); break;
                     case 8:

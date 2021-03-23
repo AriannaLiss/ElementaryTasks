@@ -33,6 +33,6 @@ public abstract class Number implements Word {
 
     @Override
     public String toString(){
-        return toString(Number.Sex.MALE);
+        return toString(Sex.MALE);
     }
 }

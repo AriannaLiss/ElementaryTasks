@@ -6,7 +6,7 @@ public interface Word {
     String SPACE = " ";
     String _A = "а";
 
-    String toString(Number.Sex sex);
+    String toString(Sex sex);
 
     default String combineWords(String word1, String word2){
         StringBuilder word = new StringBuilder(word1);

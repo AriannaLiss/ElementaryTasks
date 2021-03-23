@@ -9,8 +9,17 @@ public class Dialog{
         this.validator = validator;
     }
 
-    public String getLine(){
-        return io.getLine();
+    public String getLine(String msg){
+        String data;
+        do {
+            io.print(msg);
+            data = io.getLine();
+            if (!data.isEmpty()){
+                return data;
+            }
+            io.print(ConstGeneral.NOT_VALID_DATA);
+        }
+        while(true);
     }
 
     public void print(String msg){
@@ -31,7 +40,7 @@ public class Dialog{
                 io.print(ConstGeneral.NOT_VALID_DATA);
             }
             else{
-                return data;
+                return data.trim();
             }
         }
         while(true);
@@ -43,6 +52,7 @@ public class Dialog{
             if ((n >= from)&&(n <= to)){
                 return n;
             }
+            io.print(ConstGeneral.NOT_VALID_DATA);
         }
         while(true);
     }

@@ -1,16 +1,10 @@
 package task5_number_to_words;
 
-import general.ConstGeneral;
-import general.Dialog;
-import general.IntegerValidator;
-import general.Validator;
+import general.*;
 import task5_number_to_words.number_to_words.NumberToWords;
 import task5_number_to_words.number_to_words.OutOfBoundsNumberException;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class Application {
     private final String RULLS = "This application translates an integer number into words.\n" +
@@ -20,11 +14,13 @@ public class Application {
     private final String DO_RUN_TEST = "Would you like to run a test? (y/n) ";
 
     private Dialog dialog;
-    private Validator validator;
+    private NumberValidator validator;
+    private InputOutput io;
 
-    Application(Dialog dialog) {
-        this.dialog = dialog;
-        validator = new IntegerValidator(dialog);
+    Application(InputOutput io) {
+        this.io = io;
+        validator = new IntegerValidator();
+        dialog = new Dialog(io,validator);
     }
 
     public void run(String[] args) {
@@ -43,7 +39,7 @@ public class Application {
                 dialog.print(ConstGeneral.QUOTE + num + ConstGeneral.QUOTE + NOT_INTEGER);
             }
         }
-        if (validator.yesNo(DO_RUN_TEST)) {
+        if (dialog.yesNo(DO_RUN_TEST)) {
             new Test(dialog).run();
         }
     }

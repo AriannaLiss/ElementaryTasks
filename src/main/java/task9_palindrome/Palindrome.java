@@ -1,53 +1,52 @@
 package task9_palindrome;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Palindrome {
     private final String stringNumber;
-    private ArrayList<String> palindromes = new ArrayList<>();
+    private final HashSet<String> palindromes = new HashSet<>();
 
-    Palindrome(BigInteger number){
-        stringNumber = number.toString();
+    public Palindrome(BigInteger number) {
+        this(number.toString());
     }
 
-    Palindrome(long number){
-        stringNumber = String.valueOf(number);
+    public Palindrome(long number) {
+        this(String.valueOf(number));
     }
 
-    public String getPalindromes(){
-        for (int i=1;i<stringNumber.length();i++){
-            getPalindromes(stringNumber.substring(0,i),stringNumber.substring(i),"");
-            if(i<stringNumber.length()-1) {
-                getPalindromes(stringNumber.substring(0, i), stringNumber.substring(i + 1), stringNumber.substring(i, i + 1));
-            }
-        }
-        if (palindromes.isEmpty()){
-            return "0";
-        }
-        return palindromes.toString();
+    public Palindrome(String stringNumber){
+        this.stringNumber = stringNumber;
+        lookForPalindromes();
     }
 
-    private void getPalindromes(String leftSide, String rightSide,String subPalindrome){
-        char lastLeftChar = leftSide.charAt(leftSide.length()-1);
-        char firstRightChar = rightSide.charAt(0);
-        if (lastLeftChar==firstRightChar){
-            subPalindrome = lastLeftChar + subPalindrome + firstRightChar;
-            if (!palindromes.contains(subPalindrome)) {
-                palindromes.add(subPalindrome);
-            }
-            if ((leftSide.length()>1)&&(rightSide.length()>1)) {
-                getPalindromes(leftSide.substring(0, leftSide.length() - 1), rightSide.substring(1),subPalindrome);
-            }
-        }
+    public HashSet<String> getPalindromes() {
+        return palindromes;
     }
 
     @Override
-    public String toString(){
-        if (palindromes.isEmpty()){
-            getPalindromes();
-        }
+    public String toString() {
         return palindromes.toString();
     }
 
+    private void lookForPalindromes() {
+        for (int i = 1; i < stringNumber.length(); i++) {
+            lookForPalindromes(stringNumber.substring(0, i), stringNumber.substring(i), "");
+            if (i < stringNumber.length() - 1) {
+                lookForPalindromes(stringNumber.substring(0, i), stringNumber.substring(i + 1), stringNumber.substring(i, i + 1));
+            }
+        }
+    }
+
+    private void lookForPalindromes(String leftSide, String rightSide, String subPalindrome) {
+        char lastLeftChar = leftSide.charAt(leftSide.length() - 1);
+        char firstRightChar = rightSide.charAt(0);
+        if (lastLeftChar == firstRightChar) {
+            subPalindrome = lastLeftChar + subPalindrome + firstRightChar;
+            palindromes.add(subPalindrome);
+            if ((leftSide.length() > 1) && (rightSide.length() > 1)) {
+                lookForPalindromes(leftSide.substring(0, leftSide.length() - 1), rightSide.substring(1), subPalindrome);
+            }
+        }
+    }
 }
