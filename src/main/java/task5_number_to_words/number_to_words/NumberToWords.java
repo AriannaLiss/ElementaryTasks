@@ -3,12 +3,10 @@ package task5_number_to_words.number_to_words;
 import java.math.BigInteger;
 
 /**
- * Number in words
+ * Number to words
  *
  * This application translates an integer number into words.
  * Example: 12 - двенадцать.
- *
- * Program is run from main class with parameters.
  *
  * !other classes in this package work only with not zero positive numbers!
  */

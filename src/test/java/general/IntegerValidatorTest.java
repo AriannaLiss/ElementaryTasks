@@ -29,7 +29,6 @@ class IntegerValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"-1.1", "0,3", "aoj", "2 3"})
     void isNumber_False(String s) {
-        //then
         assertFalse(validator.isNumber(s));
     }
 

@@ -22,7 +22,7 @@ public class ChooseTask {
             "7 - Number Sequence\n" +
             "8 - Fibonacci\n" +
             "9 - Palindrome\n";
-    private static final String NEW_TASK = "Would you like to choose a new task? (y/n) ";
+    private static final String NEW_TASK = "\nWould you like to choose a new task? (y/n) ";
     private final InputOutput io;
     private final Dialog dialog;
 

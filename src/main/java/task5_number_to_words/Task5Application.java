@@ -7,9 +7,9 @@ import task5_number_to_words.number_to_words.OutOfBoundsNumberException;
 import java.math.BigInteger;
 
 public class Task5Application implements Application {
-    private final String RULLS = "This application translates an integer number into words.\n" +
+    private final String RULES = "\nThis application translates an integer number into words.\n" +
             "Example: 12 - двенадцать.\n" +
-            "Application works with integer numbers less 10^66 \n";
+            "Application works with integer numbers less 10^66.\n";
     private final String INPUT_NUMBER = "Please, input number for translation: ";
     private final String NOT_INTEGER = " is not an integer number.\n";
     private final String DO_RUN_TEST = "Would you like to run a test? (y/n) ";
@@ -25,7 +25,9 @@ public class Task5Application implements Application {
     }
 
     public void run(){
+        dialog.print(RULES);
         do {
+            dialog.print("\n");
             BigInteger num = new BigInteger(dialog.getStringNumber(INPUT_NUMBER));
             try{
                 NumberToWords ntw = new NumberToWords(num);
@@ -38,7 +40,7 @@ public class Task5Application implements Application {
 
     public void run(String[] args) {
         if (args.length == 0) {
-            dialog.print(RULLS);
+            dialog.print(RULES);
         }
         for (String num : args) {
             if (validator.isNumber(num)) {
