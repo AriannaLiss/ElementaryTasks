@@ -23,8 +23,8 @@ public class ChooseTask {
             "8 - Fibonacci\n" +
             "9 - Palindrome\n";
     private static final String NEW_TASK = "Would you like to choose a new task? (y/n) ";
-    private InputOutput io;
-    private Dialog dialog;
+    private final InputOutput io;
+    private final Dialog dialog;
 
     public ChooseTask(InputOutput io){
         this.io = io;
