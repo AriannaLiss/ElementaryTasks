@@ -10,7 +10,7 @@ import java.math.BigInteger;
  *
  * Program is run from main class with parameters.
  *
- * !other classes in this package work only with not null positive numbers!
+ * !other classes in this package work only with not zero positive numbers!
  */
 public class NumberToWords{
 

@@ -33,11 +33,7 @@ public class Task5Application implements Application {
             } catch (OutOfBoundsNumberException e) {
                 dialog.print((e.getMessage()));
             }
-        }
-        while(dialog.yesNo());
-        if (dialog.yesNo(DO_RUN_TEST)) {
-            new Test(dialog).run();
-        }
+        } while(dialog.yesNo());
     }
 
     public void run(String[] args) {
@@ -55,9 +51,6 @@ public class Task5Application implements Application {
             } else {
                 dialog.print(ConstGeneral.QUOTE + num + ConstGeneral.QUOTE + NOT_INTEGER);
             }
-        }
-        if (dialog.yesNo(DO_RUN_TEST)) {
-            new Test(dialog).run();
         }
     }
 }
