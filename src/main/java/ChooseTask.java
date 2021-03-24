@@ -35,8 +35,7 @@ public class ChooseTask {
         do {
             dialog.print(TASKS);
             int task = dialog.getNumberInRange(CHOOSE_TASK, 1, 9).intValue();
-            Application app = chooseTask(task);
-            if (app != null) app.run();
+            chooseTask(task).run();
         }
         while(dialog.yesNo(NEW_TASK));
     }
@@ -58,6 +57,6 @@ public class ChooseTask {
             case 9:
                 return new Task9Application(io);
         }
-        return null;
+        return new Rules(io);
     }
 }
