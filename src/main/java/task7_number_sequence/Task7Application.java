@@ -1,9 +1,6 @@
 package task7_number_sequence;
 
-import general.ConstGeneral;
-import general.Dialog;
-import general.InputOutput;
-import general.IntegerValidator;
+import general.*;
 import task8_fibonacci.Fibonacci;
 
 import java.util.Arrays;
@@ -17,12 +14,12 @@ import java.util.Arrays;
  *             m is a minimal square for numbers in the sequence.
  * Output:     the sequence with n natural numbers (theirs square are not less m).
  */
-public class Application {
+public class Task7Application implements Application {
     private InputOutput io;
     private IntegerValidator validator;
     private Dialog dialog;
 
-    Application(InputOutput io){
+    public Task7Application(InputOutput io){
         this.io = io;
         validator = new IntegerValidator();
         dialog = new Dialog(io, validator);

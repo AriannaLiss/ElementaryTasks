@@ -6,7 +6,7 @@ import task5_number_to_words.number_to_words.OutOfBoundsNumberException;
 
 import java.math.BigInteger;
 
-public class Application {
+public class Task5Application implements Application {
     private final String RULLS = "This application translates an integer number into words.\n" +
             "Example: 12 - двенадцать.\n" +
             "Application works with integer numbers less 10^66 \n";
@@ -18,7 +18,7 @@ public class Application {
     private NumberValidator validator;
     private InputOutput io;
 
-    Application(InputOutput io) {
+    public Task5Application(InputOutput io) {
         this.io = io;
         validator = new IntegerValidator();
         dialog = new Dialog(io,validator);

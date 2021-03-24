@@ -1,15 +1,16 @@
 package task8_fibonacci;
 
+import general.Application;
 import general.Dialog;
 import general.InputOutput;
 import general.IntegerValidator;
 
-public class Application {
+public class Task8Application implements Application {
     private InputOutput io;
     private IntegerValidator validator;
     private Dialog dialog;
 
-    Application(InputOutput io) {
+    public Task8Application(InputOutput io) {
         this.io = io;
         validator = new IntegerValidator();
         dialog = new Dialog(io,validator);

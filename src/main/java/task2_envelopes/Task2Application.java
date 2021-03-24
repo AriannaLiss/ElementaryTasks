@@ -1,13 +1,14 @@
 package task2_envelopes;
 
+import general.Application;
 import general.DoubleValidator;
 import general.InputOutput;
 import general.Dialog;
 
-public class Application {
+public class Task2Application implements Application {
     private Dialog dialog;
 
-    Application(InputOutput io) {
+    public Task2Application(InputOutput io) {
         dialog = new Dialog(io, new DoubleValidator());
     }
 

@@ -5,6 +5,6 @@ import general.ConsoleInputOutput;
 public class Main {
 
     public static void main(String[] args) {
-        new Application(new ConsoleInputOutput()).run();
+        new Task1Application(new ConsoleInputOutput()).run();
     }
 }

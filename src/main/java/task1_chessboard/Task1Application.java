@@ -1,12 +1,9 @@
 package task1_chessboard;
 
-import general.Dialog;
-import general.InputOutput;
-import general.IntegerValidator;
-import general.NumberValidator;
+import general.*;
 
 
-public class Application {
+public class Task1Application implements Application {
     static private final String WELCOME_MSG =
             "This application print chess board with your parameters width and height.\n";
     static private final String RULES = "Set height and width for chess board.\nExample: 6 5\n";
@@ -23,7 +20,7 @@ public class Application {
     private NumberValidator validator;
     private Dialog dialog;
 
-    Application(InputOutput io){
+    public Task1Application(InputOutput io){
         this.io = io;
         validator = new IntegerValidator();
         dialog = new Dialog(io, validator);

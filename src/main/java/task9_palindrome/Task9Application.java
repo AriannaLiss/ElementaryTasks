@@ -1,5 +1,6 @@
 package task9_palindrome;
 
+import general.Application;
 import general.Dialog;
 import general.InputOutput;
 import general.IntegerValidator;
@@ -18,16 +19,16 @@ import java.math.BigInteger;
  * input: a number
  * output: list of palindromes or message if there are not any palindromes.
  */
-public class Application {
+public class Task9Application implements Application {
     private static final String INPUT_A_NUMBER = "Input a number: ";
     private static final String NO_PALINDROMES = "This number doesn't have any palindromes.\n";
     private final Dialog dialog;
 
-    Application(InputOutput io) {
+    public Task9Application(InputOutput io) {
         dialog = new Dialog(io, new IntegerValidator());
     }
 
-    void run() {
+    public void run() {
         do {
             Palindrome palindrome = new Palindrome(new BigInteger(dialog.getStringNumber(INPUT_A_NUMBER)));
             if (palindrome.getPalindromes().isEmpty()){

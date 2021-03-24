@@ -10,7 +10,7 @@ import general.ConsoleInputOutput;
 public class Main {
 
     public static void main(String... args){
-        Application task8 = new Application(new ConsoleInputOutput());
+        Task8Application task8 = new Task8Application(new ConsoleInputOutput());
         task8.run();
     }
 }

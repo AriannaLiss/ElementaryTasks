@@ -5,7 +5,7 @@ import general.ConsoleInputOutput;
 public class Main {
 
     public static void main(String... args){
-        Application task7 = new Application(new ConsoleInputOutput());
+        Task7Application task7 = new Task7Application(new ConsoleInputOutput());
         task7.run();
     }
 }
