@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class Palindrome {
     private final String stringNumber;
-    private final HashSet<String> palindromes = new HashSet<>();
+    private final HashSet<String> palindromes;
 
     public Palindrome(BigInteger number) {
         this(number.toString());
@@ -17,6 +17,7 @@ public class Palindrome {
 
     public Palindrome(String stringNumber){
         this.stringNumber = stringNumber;
+        palindromes = new HashSet<>();
         lookForPalindromes();
     }
 
