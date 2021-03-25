@@ -15,7 +15,7 @@ class Hundred extends Number {
         byte hundred = getHundredFigure();
         StringBuilder word = new StringBuilder(Word.EMPTY_STRING);
         if (hundred > 0) {
-            switch(hundred) {
+            switch (hundred) {
                 case 1:
                     word.append(HUNDRED);
                     break;
@@ -31,6 +31,6 @@ class Hundred extends Number {
                     }
             }
         }
-        return combineWords(word, new Decade(getDecades()).toString(gender));
+        return combineWords(word, new Decade(getNumber()).toString(gender));
     }
 }

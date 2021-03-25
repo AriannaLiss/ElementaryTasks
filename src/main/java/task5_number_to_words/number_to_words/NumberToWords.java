@@ -10,14 +10,14 @@ import java.math.BigInteger;
  *
  * !other classes in this package work only with not zero positive numbers!
  */
-public class NumberToWords{
+public class NumberToWords {
 
     private final byte sign;
     private final short[] partsOfNumber;
     private byte lastRank;
 
     public NumberToWords(BigInteger number) {
-        sign = (byte)number.signum();
+        sign = (byte) number.signum();
         if (sign < 0) {
             number = number.abs();
         }
@@ -37,15 +37,15 @@ public class NumberToWords{
         if (sign < 0) {
             numberByWords.append(Word.MINUS);
         }
-        for (byte rank = (byte)(partsOfNumber.length-1); rank>=lastRank; rank--){
+        for (byte rank = (byte) (partsOfNumber.length - 1); rank >= lastRank; rank--) {
             numberByWords.append(getPartOfNumberByWords(rank));
         }
         return numberByWords.toString();
     }
 
-    private String getPartOfNumberByWords(byte rank){
+    private String getPartOfNumberByWords(byte rank) {
         StringBuilder numberByWords = new StringBuilder();
-        if (partsOfNumber[rank]!=0) {
+        if (partsOfNumber[rank] != 0) {
             Hundred partNumberByWords = new Hundred(partsOfNumber[rank]);
             Number.Gender gender = (rank == 1) ? Number.Gender.FEMALE : Number.Gender.MALE;
             numberByWords.append(partNumberByWords.toString(gender));
@@ -78,9 +78,9 @@ public class NumberToWords{
         byte from = to;
         lastRank = -1;
         for (byte i = 0; i < rank; i++) {
-            from = (byte)((from < 3) ? 0 : from - 3);
-            partsOfNumber[i]= Short.parseShort(stringNumber.substring(from, to));
-            if ((lastRank == -1) && (partsOfNumber[i]!=0)) {
+            from = (byte) ((from < 3) ? 0 : from - 3);
+            partsOfNumber[i] = Short.parseShort(stringNumber.substring(from, to));
+            if ((lastRank == -1) && (partsOfNumber[i] != 0)) {
                 lastRank = i;
             }
             to = from;
@@ -114,11 +114,11 @@ public class NumberToWords{
 
     /**
      * @param hundred part number for this rank
-     * @param rank > 0
+     * @param rank    > 0
      * @return String end for thousand and millions
      */
-    private String getEnd(Hundred hundred, byte rank){
-        if (rank==1) return getThousandEnd(hundred);
+    private String getEnd(Hundred hundred, byte rank) {
+        if (rank == 1) return getThousandEnd(hundred);
         return getMillionEnd(hundred);
     }
 
@@ -132,9 +132,9 @@ public class NumberToWords{
         return Word.EMPTY_STRING; //unit == 1
     }
 
-    private String getThousandEnd(Hundred hundred){
+    private String getThousandEnd(Hundred hundred) {
         byte decade = hundred.getDecadeFigure();
-        if (decade!=1) {
+        if (decade != 1) {
             byte unit = hundred.getUnit();
             if (unit == 1) {
                 return Word._A;

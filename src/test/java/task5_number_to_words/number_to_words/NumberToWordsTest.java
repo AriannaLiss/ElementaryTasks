@@ -13,62 +13,54 @@ class NumberToWordsTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/numbers.csv")
-    void testNumbers(long number, String expected){
+    void testNumbers(long number, String expected) {
         //given
         NumberToWords ntw = new NumberToWords(number);
         //when
         String actual = ntw.toString() + ".";
         //then
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/thousands.csv")
-    void testThousands(long number, String expected){
+    void testThousands(long number, String expected) {
         //given
         NumberToWords ntw = new NumberToWords(number);
         //when
         String actual = ntw.toString() + ".";
         //then
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/bigNumbers.csv")
-    void testBigNumbers(BigInteger number, String expected){
+    void testBigNumbers(BigInteger number, String expected) {
         //given
         NumberToWords ntw = new NumberToWords(number);
         //when
         String actual = ntw.toString() + ".";
         //then
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/boundsNumbers.csv")
-    void testBounds(BigInteger number, String expected){
+    void testBounds(BigInteger number, String expected) {
         //given
         NumberToWords ntw = new NumberToWords(number);
         //when
-        String actual = ntw.toString()+".";
+        String actual = ntw.toString() + ".";
         //then
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
-    void testExceptionOutOfBounds(){
+    void testExceptionOutOfBounds() {
         //given
         BigInteger number = BigInteger.TEN.pow(MAX_POW);
         NumberToWords ntw = new NumberToWords(number);
         //then
         assertThrows(OutOfBoundsNumberException.class, () -> ntw.toString());
     }
-
-/*    private void boundsTesting(){
-        final BigInteger MAX_VALUE = BigInteger.TEN.pow(MAX_POW).subtract(BigInteger.ONE);
-        test(MAX_VALUE);
-        test(MAX_VALUE.add(BigInteger.ONE));
-        test(MAX_VALUE.multiply(BigInteger.valueOf(-1L)));
-    }
- */
 }
