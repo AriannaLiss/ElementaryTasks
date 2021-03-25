@@ -3,6 +3,17 @@ package task9_palindrome;
 import java.math.BigInteger;
 import java.util.HashSet;
 
+/**
+ * Palindrome
+ * <p>
+ * This application returns all palindromes in the number.
+ * Example:
+ * number: 1234437
+ * result: [44, 3443]
+ * <p>
+ * input: a number
+ * output: list of palindromes.
+ */
 public class Palindrome {
     private final String stringNumber;
     private final HashSet<String> palindromes;

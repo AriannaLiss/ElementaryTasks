@@ -7,18 +7,6 @@ import general.IntegerValidator;
 
 import java.math.BigInteger;
 
-
-/**
- * Palindrome
- * <p>
- * This application returns all palindromes in the number.
- * Example:
- * number: 1234437
- * result: [44, 3443]
- * <p>
- * input: a number
- * output: list of palindromes or message if there are not any palindromes.
- */
 public class Task9Application implements Application {
     private static final String RULES = "\nThis application returns all palindromes in the number.\n" +
             "Example:\nnumber: 1234437\nresult: [44, 3443]\n";
